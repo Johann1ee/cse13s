@@ -1,19 +1,20 @@
+#include "names.h"
+
 #include <stdio.h>
 #include <stdlib.h>
-#include "names.h"
 
 int main(void) {
 
     /* pig array that will be used for random() */
-    typedef enum {SIDE, RAZORBACK, TROTTER, SNOUTER, JOWLER} Position;
+    typedef enum { SIDE, RAZORBACK, TROTTER, SNOUTER, JOWLER } Position;
     const Position pig[7] = {
-            SIDE,
-            SIDE,
-            RAZORBACK,
-            TROTTER,
-            SNOUTER,
-            JOWLER,
-            JOWLER,
+        SIDE,
+        SIDE,
+        RAZORBACK,
+        TROTTER,
+        SNOUTER,
+        JOWLER,
+        JOWLER,
     };
 
     /* grab the needed number of players from the user
@@ -42,7 +43,7 @@ int main(void) {
     /* creates a new array based on keeping track of scores
        with a matching index to the player */
     int player_score[10] = {
-            0,
+        0,
     };
 
     for (int i = 0; i < number_players; i++) {
@@ -74,33 +75,29 @@ int main(void) {
                 pig_set = pig[random() % 7];
 
                 switch (pig_set) {
-                    case 0:
-                        printf(" rolls %d, has %d\n", pig_set, player_score[i]);
-                        break;
-                    case 1:
-                        player_score[i] += 10;
-                        printf(" rolls 10, has %d\n", player_score[i]);
-                        break;
-                    case 2:
-                        player_score[i] += 10;
-                        printf(" rolls 10, has %d\n", player_score[i]);
-                        break;
-                    case 3:
-                        player_score[i] += 15;
-                        printf(" rolls 15, has %d\n", player_score[i]);
-                        break;
-                    case 4:
-                        player_score[i] += 5;
-                        printf(" rolls 5, has %d\n", player_score[i]);
-                        break;
+                case 0: printf(" rolls %d, has %d\n", pig_set, player_score[i]); break;
+                case 1:
+                    player_score[i] += 10;
+                    printf(" rolls 10, has %d\n", player_score[i]);
+                    break;
+                case 2:
+                    player_score[i] += 10;
+                    printf(" rolls 10, has %d\n", player_score[i]);
+                    break;
+                case 3:
+                    player_score[i] += 15;
+                    printf(" rolls 15, has %d\n", player_score[i]);
+                    break;
+                case 4:
+                    player_score[i] += 5;
+                    printf(" rolls 5, has %d\n", player_score[i]);
+                    break;
                 }
-                if (player_score[i] >= 100){
+                if (player_score[i] >= 100) {
                     printf("%s won!\n", player_name[i]);
                     return 0;
                 }
             }
-
         }
     } while (max <= 100);
 }
-
