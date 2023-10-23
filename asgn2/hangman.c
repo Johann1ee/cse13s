@@ -7,10 +7,10 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "wrong number of arguements\n"
                         "usage: ./hangman <secrete word or phrase>\n"
                         "if the secret is multiple words, you must quote it\n");
-        return 1;
+        exit(1);
     }
     if (validate_secret(argv[1]) == false) {
-        return 1;
+        exit(1);
     }
 
     int mistake = 0;
