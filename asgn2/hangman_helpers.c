@@ -43,8 +43,8 @@ char read_letter(void) {
     printf("Guess a letter: ");
     character = (char) getchar();
 
-    while (character == '\n') {
+   /* while (character == '\n') {
         character = (char) getchar();
-    }
+    }*/
     return character;
 }
