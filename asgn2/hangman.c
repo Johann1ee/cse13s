@@ -69,6 +69,7 @@ int main(int argc, char *argv[]) {
 
     printf("%s", CLEAR_SCREEN);
     if (mistake >= LOSING_MISTAKE) {
+        printf("%s\n", arts[mistake]);
         printf("    Phrase: %s\n", phrase);
         printf("Eliminated: ");
         for (int i = 0; i < 26; i++) {
@@ -78,6 +79,7 @@ int main(int argc, char *argv[]) {
         }
         printf("\n\nYou lose! The secret phrase was: %s\n", argv[1]);
     } else {
+        printf("%s\n", arts[mistake]);
         printf("    Phrase: %s\n", phrase);
         printf("Eliminated: ");
         for (int i = 0; i < 26; i++) {

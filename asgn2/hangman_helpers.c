@@ -20,7 +20,7 @@ bool validate_secret(const char *secret) {
         if (is_lowercase_letter(secret[i]) == false
             && string_contains_character(punctuation, secret[i]) == false) {
             fprintf(stderr,
-                "invalid character: %c\n"
+                "invalid character: '%c'\n"
                 "the secret phrase must contain "
                 "only lowercase letters, spaces, hyphens, and apostrophes\n",
                 secret[i]);
