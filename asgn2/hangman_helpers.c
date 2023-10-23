@@ -39,12 +39,13 @@ bool string_contains_character(const char *s, char c) {
 }
 
 char read_letter(void) {
-    char character = '\n';
-    printf("Guess a letter: ");
-    while (character == '\n') {
-        if (is_lowercase_letter(character) == false) {
-            character = (char) getchar();
-        }
-    }
+    char character;
+
+    do {
+        printf("Guess a letter: ");
+        scanf(" %c", &character);
+
+    } while (!is_lowercase_letter(character));
+
     return character;
 }
