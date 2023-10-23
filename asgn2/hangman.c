@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[]) {
     if (argc > 2) {
-        fprintf(stderr, "wrong number of arguements\n"
+        fprintf(stdout, "wrong number of arguements\n"
                         "usage: ./hangman <secrete word or phrase>\n"
                         "if the secret is multiple words, you must quote it\n");
         exit(1);
