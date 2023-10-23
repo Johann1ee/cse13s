@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
 
         do {
             guess = read_letter();
-        } while (!is_lowercase_letter(guess));
+        } while (!is_lowercase_letter(guess) || string_contains_character(phrase, guess));
 
         if (string_contains_character(argv[1], guess) == true) {
             for (int i = 0; i < length; ++i) {
