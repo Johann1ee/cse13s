@@ -68,6 +68,7 @@ int main(int argc, char *argv[]) {
     }
 
     printf("%s", CLEAR_SCREEN);
+    printf("%s\n\n", arts[mistake]);
     if (mistake >= LOSING_MISTAKE) {
         printf("    Phrase: %s\n", phrase);
         printf("Eliminated: ");
