@@ -13,7 +13,7 @@ $(EXEC): $(OBJS)
 	$(CC) $(CFLAGS) -c $<
 
 clean:
-	rm -f $(EXEC) $(OBJS)i
+	rm -f $(EXEC) $(OBJS)
 
 format:
 	clang-format -i -style=file *.[ch]

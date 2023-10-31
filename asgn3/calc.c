@@ -42,9 +42,14 @@ int main(int argc, char *argv[]) {
 
         const char *token = strtok_r(expr, " ", &saveptr);
 
-        while (token != NULL && !error) {
+	if (*token != EOF){
+		return 0;
+	}
+
+
+        while (token != NULL && !error && *token != EOF) {
             int bin = 0, unary = 0;
-	    int pocket = (int) strlen(token);
+            int pocket = (int) strlen(token);
 
             for (int i = 0; i < 256; i++) {
                 if (binary_operators[i] != NULL && i == *token && pocket == 1) {
@@ -62,15 +67,14 @@ int main(int argc, char *argv[]) {
             if (!parse_double(token, &holder) && bin == 0 && unary == 0) {
                 if (strlen(token) == 1) {
                     fprintf(stderr, ERROR_BAD_CHAR, token[0]);
-                }
-		else {
+                } else {
                     fprintf(stderr, ERROR_BAD_STRING, token);
-		    stack_print();
+                    stack_print();
                 }
             }
             if (parse_double(token, &holder)) {
                 if (!stack_push(holder)) {
-			error  = true;
+                    error = true;
                 }
             }
 
@@ -147,7 +151,6 @@ int main(int argc, char *argv[]) {
                     break;
                 }
             }
-            token = strtok_r(NULL, " ", &saveptr);
         }
         stack_print();
         printf("%c", '\n');
