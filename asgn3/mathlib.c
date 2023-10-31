@@ -44,7 +44,7 @@ double Sin(double x) {
         swap = -swap;
         n++;
 
-        if (Abs(holder) < EPSILON / 100000000) {
+        if (Abs(holder) < EPSILON / 10000000) {
             holder = holder * ((x * x) / ((2 * n) * (2 * n + 1)));
             rad += swap * holder;
             break;
@@ -67,7 +67,7 @@ double Cos(double x) {
         swap = -swap;
         n++;
 
-        if (Abs(holder) < EPSILON / 100000000) {
+        if (Abs(holder) < EPSILON / 10000000) {
             holder = holder * ((x * x) / ((n + (n - 1)) * (2 * n)));
             rad += swap * holder;
             break;
