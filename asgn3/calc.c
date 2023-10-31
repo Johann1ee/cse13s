@@ -10,9 +10,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-double stack[STACK_CAPACITY] = { 0 };
-int stack_size = 0;
-
 int main(int argc, char *argv[]) {
     int opt;
     bool my_math = true;
@@ -64,9 +61,10 @@ int main(int argc, char *argv[]) {
             if (!parse_double(token, &holder) && bin == 0 && unary == 0) {
                 if (strlen(token) == 1) {
                     fprintf(stderr, ERROR_BAD_CHAR, token[0]);
+                    error = true;
                 } else {
                     fprintf(stderr, ERROR_BAD_STRING, token);
-                    stack_print();
+                    error = true;
                 }
             }
             if (parse_double(token, &holder)) {
@@ -183,8 +181,8 @@ int main(int argc, char *argv[]) {
         if (error == false) {
             stack_print();
             printf("%c", '\n');
-            stack_clear();
         }
+        stack_clear();
     }
 
     return 0;

@@ -7,6 +7,8 @@
 #include <stdio.h>
 
 int top = -1;
+double stack[STACK_CAPACITY] = { 0 };
+int stack_size = 0;
 
 bool stack_push(double item) {
     if (stack_size >= STACK_CAPACITY) {

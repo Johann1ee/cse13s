@@ -4,12 +4,12 @@
 #include <stdio.h>
 
 double Abs(double x) {
-	double y;
-	if (x > 0){
-		y = x;
-	}else{
-		y = -x;
-	}
+    double y;
+    if (x > 0) {
+        y = x;
+    } else {
+        y = -x;
+    }
     return y;
 }
 
@@ -33,47 +33,47 @@ double Sqrt(double x) {
 }
 
 double Sin(double x) {
-	int n = 0;
-	double rad = 0.0;
-	double holder = x;
-	int swap = 1;
+    int n = 1;
+    double rad = x;
+    double holder = x;
+    int swap = -1;
 
-	while (1){
-		if (Abs(holder) < EPSILON){
-			break;
-		}
-		
-		rad += swap * holder;
-		holder = holder * ((x * x) / ((2 * n) * (2 * n + 1)));
-		swap = -swap;
-		n++;
+    while (1) {
+	if (Abs(holder) < EPSILON){
+		break;
 	}
-       	double twopi = 2.0 * M_PI;
-	rad = fmod(rad, twopi);
 
-	return rad;	
+        holder = holder * ((x * x) / ((2 * n) * (2 * n + 1)));
+        rad += swap * holder;
+        swap = -swap;
+        n++;
+    }
+    double twopi = 2.0 * M_PI;
+    rad = fmod(rad, twopi);
+
+    return rad;
 }
 
 double Cos(double x) {
-        int n = 1;
-        double rad = 1.0;
-        double holder = 1.0;
-        int swap = -1;
+    int n = 1;
+    double rad = 1.0;
+    double holder = 1.0;
+    int swap = -1;
 
-        while (1){
-                if (Abs(holder) < EPSILON){
-                        break;
-                }
-
-                holder = holder * ((x * x) / ((n + (n - 1)) * (2 * n)));
-                rad += swap * holder;
-                swap = -swap;
-                n++;
+    while (1) {
+        if (Abs(holder) < EPSILON) {
+            break;
         }
-        double twopi = 2.0 * M_PI;
-        rad = fmod(rad, twopi);
 
-        return rad;
+        holder = holder * ((x * x) / ((n + (n - 1)) * (2 * n)));
+        rad += swap * holder;
+        swap = -swap;
+        n++;
+    }
+    double twopi = 2.0 * M_PI;
+    rad = fmod(rad, twopi);
+
+    return rad;
 }
 
 double Tan(double x) {
