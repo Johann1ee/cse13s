@@ -61,7 +61,7 @@ double Cos(double x) {
     int swap = -1;
 
     while (1) {
-        if (Abs(holder) < (EPSILON / 100000)0) {
+        if (Abs(holder) < (EPSILON / 100000)) {
             break;
         }
 
