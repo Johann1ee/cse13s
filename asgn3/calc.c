@@ -38,10 +38,9 @@ int main(int argc, char *argv[]) {
             if (len > 0 && expr[len - 1] == '\n') {
                 expr[len - 1] = '\0';
             }
+        } else {
+            return 0;
         }
-	else{
-		return 0;
-	}
 
         const char *token = strtok_r(expr, " ", &saveptr);
 
@@ -81,79 +80,111 @@ int main(int argc, char *argv[]) {
                 case '+':
                     if (!apply_binary_operator(operator_add)) {
                         fprintf(stderr, ERROR_BINARY_OPERATOR);
+                        error = true;
                     }
                     break;
                 case '-':
-                    if (!apply_binary_operator(operator_sub))
+                    if (!apply_binary_operator(operator_sub)) {
                         fprintf(stderr, ERROR_BINARY_OPERATOR);
+                        error = true;
+                    }
                     break;
                 case '*':
-                    if (!apply_binary_operator(operator_mul))
+                    if (!apply_binary_operator(operator_mul)) {
                         fprintf(stderr, ERROR_BINARY_OPERATOR);
+                        error = true;
+                    }
                     break;
                 case '/':
-                    if (!apply_binary_operator(operator_div))
+                    if (!apply_binary_operator(operator_div)) {
                         fprintf(stderr, ERROR_BINARY_OPERATOR);
+                        error = true;
+                    }
                     break;
                 case '%':
-                    if (!apply_binary_operator(fmod))
+                    if (!apply_binary_operator(fmod)) {
                         fprintf(stderr, ERROR_BINARY_OPERATOR);
+                        error = true;
+                    }
                     break;
                 }
             }
             if (unary == 1 && my_math == true) {
                 switch (token[0]) {
                 case 's':
-                    if (!apply_unary_operator(Sin))
+                    if (!apply_unary_operator(Sin)) {
                         fprintf(stderr, ERROR_UNARY_OPERATOR);
+                        error = true;
+                    }
                     break;
                 case 'c':
-                    if (!apply_unary_operator(Cos))
+                    if (!apply_unary_operator(Cos)) {
                         fprintf(stderr, ERROR_UNARY_OPERATOR);
+                        error = true;
+                    }
                     break;
                 case 't':
-                    if (!apply_unary_operator(Tan))
+                    if (!apply_unary_operator(Tan)) {
                         fprintf(stderr, ERROR_UNARY_OPERATOR);
+                        error = true;
+                    }
                     break;
                 case 'a':
-                    if (!apply_unary_operator(Abs))
+                    if (!apply_unary_operator(Abs)) {
                         fprintf(stderr, ERROR_UNARY_OPERATOR);
+                        error = true;
+                    }
                     break;
                 case 'r':
-                    if (!apply_unary_operator(Sqrt))
+                    if (!apply_unary_operator(Sqrt)) {
                         fprintf(stderr, ERROR_UNARY_OPERATOR);
+                        error = true;
+                    }
                     break;
                 }
             }
             if (unary == 1 && my_math == false) {
                 switch (token[0]) {
                 case 's':
-                    if (!apply_unary_operator(sin))
+                    if (!apply_unary_operator(sin)) {
                         fprintf(stderr, ERROR_UNARY_OPERATOR);
+                        error = true;
+                    }
                     break;
                 case 'c':
-                    if (!apply_unary_operator(cos))
+                    if (!apply_unary_operator(cos)) {
                         fprintf(stderr, ERROR_UNARY_OPERATOR);
+                        error = true;
+                    }
                     break;
                 case 't':
-                    if (!apply_unary_operator(tan))
+                    if (!apply_unary_operator(tan)) {
                         fprintf(stderr, ERROR_UNARY_OPERATOR);
+                        error = true;
+                    }
                     break;
                 case 'a':
-                    if (!apply_unary_operator(fabs))
+                    if (!apply_unary_operator(fabs)) {
                         fprintf(stderr, ERROR_UNARY_OPERATOR);
+                        error = true;
+                    }
                     break;
                 case 'r':
-                    if (!apply_unary_operator(sqrt))
+                    if (!apply_unary_operator(sqrt)) {
                         fprintf(stderr, ERROR_UNARY_OPERATOR);
+                        error = true;
+                    }
                     break;
                 }
             }
             token = strtok_r(NULL, " ", &saveptr);
         }
-        stack_print();
-        printf("%c", '\n');
-        stack_clear();
+
+        if (error == false) {
+            stack_print();
+            printf("%c", '\n');
+            stack_clear();
+        }
     }
 
     return 0;

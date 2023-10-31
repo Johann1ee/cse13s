@@ -4,8 +4,12 @@
 #include <stdio.h>
 
 double Abs(double x) {
-    double y = x * x;
-    y = Sqrt(y);
+	double y;
+	if (x > 0){
+		y = x;
+	}else{
+		y = -x;
+	}
     return y;
 }
 
@@ -29,89 +33,47 @@ double Sqrt(double x) {
 }
 
 double Sin(double x) {
-    double z = 0;
-    int n = 0;
+	int n = 0;
+	double rad = 0.0;
+	double holder = x;
+	int swap = 1;
 
-    while (1) {
-        double a, b = 1, c = x, d;
+	while (1){
+		if (Abs(holder) < EPSILON){
+			break;
+		}
+		
+		rad += swap * holder;
+		holder = holder * ((x * x) / ((2 * n) * (2 * n + 1)));
+		swap = -swap;
+		n++;
+	}
+       	double twopi = 2.0 * M_PI;
+	rad = fmod(rad, twopi);
 
-        if (fmod(n, 2) == 0) {
-            a = 1;
-        } else {
-            a = -1;
-        }
-
-        for (int i = 1; i <= (2 * n + 1); i++) {
-            b = b * i;
-        }
-
-        for (int i = 1; i <= (2 * n + 1); i++) {
-            c = c * x;
-        }
-
-        d = (a / b) * c;
-
-        if (d < EPSILON) {
-            break;
-        }
-
-        z = z + d;
-        n++;
-    }
-
-    double twopi = 2.0 * M_PI;
-
-    while (z < 0.0) {
-        z -= twopi;
-    }
-    while (z > twopi) {
-        z += twopi;
-    }
-
-    return z;
+	return rad;	
 }
 
 double Cos(double x) {
-    double z = 0;
-    int n = 0;
+        int n = 1;
+        double rad = 1.0;
+        double holder = 1.0;
+        int swap = -1;
 
-    while (1) {
-        double a, b = 1, c = x, d;
+        while (1){
+                if (Abs(holder) < EPSILON){
+                        break;
+                }
 
-        if (fmod(n, 2) == 0) {
-            a = 1;
-        } else {
-            a = -1;
+                holder = holder * ((x * x) / ((n + (n - 1)) * (2 * n)));
+                rad += swap * holder;
+                swap = -swap;
+                n++;
         }
+        double twopi = 2.0 * M_PI;
+        rad = fmod(rad, twopi);
 
-        for (int i = 1; i <= (2 * n); i++) {
-            b = b * i;
-        }
-
-        for (int i = 1; i <= (2 * n); i++) {
-            c = c * x;
-        }
-
-        d = (a / b) * c;
-
-        if (d < EPSILON) {
-            break;
-        }
-
-        z = z + d;
-        n++;
-    }
-
-    double twopi = 2.0 * M_PI;
-
-    while (z < 0.0) {
-        z -= twopi;
-    }
-    while (z > twopi) {
-        z += twopi;
-    }
-
-    return z;
+        return rad;
 }
 
 double Tan(double x) {

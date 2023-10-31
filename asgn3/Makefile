@@ -1,5 +1,5 @@
 CC     = clang
-CFLAGS = -Werror -Wall -Wextra -Wconversion -Wdouble-promotion -Wstrict-prototypes -pedantic
+CFLAGS = -Werror -Wall -Wextra -Wconversion -Wdouble-promotion -Wstrict-prototypes -pedantic 
 LFLAGS = -lm 
 EXEC   = calc
 OBJS   = calc.o stack.o mathlib.o operators.o
@@ -20,5 +20,7 @@ format:
 
 scan-build: clean
 	scan-build --use-cc=$(CC) make
+
+.PHONY: all clean format
 
 
