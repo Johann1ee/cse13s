@@ -42,10 +42,9 @@ int main(int argc, char *argv[]) {
 
         const char *token = strtok_r(expr, " ", &saveptr);
 
-	if (*token != EOF){
-		return 0;
-	}
-
+        if (*token != EOF) {
+            return 0;
+        }
 
         while (token != NULL && !error && *token != EOF) {
             int bin = 0, unary = 0;
