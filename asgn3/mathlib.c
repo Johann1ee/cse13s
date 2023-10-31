@@ -33,6 +33,8 @@ double Sqrt(double x) {
 }
 
 double Sin(double x) {
+    x = fmod(x, 2.0 * M_PI);
+
     int n = 1;
     double rad = x;
     double holder = x;
@@ -44,7 +46,7 @@ double Sin(double x) {
         swap = -swap;
         n++;
 
-        if (Abs(holder) < EPSILON / 10000000) {
+        if (Abs(holder) < EPSILON) {
             holder = holder * ((x * x) / ((2 * n) * (2 * n + 1)));
             rad += swap * holder;
             break;
@@ -56,6 +58,8 @@ double Sin(double x) {
 }
 
 double Cos(double x) {
+    x = fmod(x, 2.0 * M_PI);
+
     int n = 1;
     double rad = 1.0;
     double holder = 1.0;
@@ -67,7 +71,7 @@ double Cos(double x) {
         swap = -swap;
         n++;
 
-        if (Abs(holder) < EPSILON / 10000000) {
+        if (Abs(holder) < EPSILON) {
             holder = holder * ((x * x) / ((n + (n - 1)) * (2 * n)));
             rad += swap * holder;
             break;
