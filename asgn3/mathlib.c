@@ -39,17 +39,18 @@ double Sin(double x) {
     int swap = -1;
 
     while (1) {
-	if (Abs(holder) < (EPSILON / 1000000)){
-		break;
-	}
-
         holder = holder * ((x * x) / ((2 * n) * (2 * n + 1)));
         rad += swap * holder;
         swap = -swap;
         n++;
+
+        if (Abs(holder) < EPSILON / 100000000) {
+            holder = holder * ((x * x) / ((2 * n) * (2 * n + 1)));
+            rad += swap * holder;
+            break;
+        }
     }
-    double twopi = 2.0 * M_PI;
-    rad = fmod(rad, twopi);
+    rad = fmod(rad, 2.0 * M_PI);
 
     return rad;
 }
@@ -61,17 +62,18 @@ double Cos(double x) {
     int swap = -1;
 
     while (1) {
-        if (Abs(holder) < (EPSILON / 100000)) {
-            break;
-        }
-
         holder = holder * ((x * x) / ((n + (n - 1)) * (2 * n)));
         rad += swap * holder;
         swap = -swap;
         n++;
+
+        if (Abs(holder) < EPSILON / 100000000) {
+            holder = holder * ((x * x) / ((n + (n - 1)) * (2 * n)));
+            rad += swap * holder;
+            break;
+        }
     }
-    double twopi = 2.0 * M_PI;
-    rad = fmod(rad, twopi);
+    rad = fmod(rad, 2.0 * M_PI);
 
     return rad;
 }

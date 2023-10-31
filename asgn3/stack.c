@@ -37,7 +37,7 @@ bool stack_peek(double *item) {
     if (stack_size == 0) {
         return false;
     } else {
-        *item = stack[stack_size];
+        *item = stack[top];
         return true;
     }
 }
