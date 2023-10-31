@@ -39,7 +39,7 @@ double Sin(double x) {
     int swap = -1;
 
     while (1) {
-	if (Abs(holder) < EPSILON){
+	if (Abs(holder) < (EPSILON / 1000000)){
 		break;
 	}
 
@@ -61,7 +61,7 @@ double Cos(double x) {
     int swap = -1;
 
     while (1) {
-        if (Abs(holder) < EPSILON) {
+        if (Abs(holder) < (EPSILON / 100000)0) {
             break;
         }
 
