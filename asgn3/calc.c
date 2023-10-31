@@ -39,14 +39,13 @@ int main(int argc, char *argv[]) {
                 expr[len - 1] = '\0';
             }
         }
+	else{
+		return 0;
+	}
 
         const char *token = strtok_r(expr, " ", &saveptr);
 
-        if (*token != EOF) {
-            return 0;
-        }
-
-        while (token != NULL && !error && *token != EOF) {
+        while (token != NULL && !error) {
             int bin = 0, unary = 0;
             int pocket = (int) strlen(token);
 
@@ -150,6 +149,7 @@ int main(int argc, char *argv[]) {
                     break;
                 }
             }
+            token = strtok_r(NULL, " ", &saveptr);
         }
         stack_print();
         printf("%c", '\n');

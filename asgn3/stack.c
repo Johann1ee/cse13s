@@ -16,7 +16,6 @@ bool stack_push(double item) {
         stack_size++;
         top++;
         stack[top] = item;
-        printf("%f", item);
         return true;
     }
 }
