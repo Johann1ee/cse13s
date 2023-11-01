@@ -25,6 +25,7 @@ bool apply_binary_operator(binary_operator_fn op) {
     }
 }
 
+//Function given by Kerry Veenstra, asgn3.pdf page 3
 bool apply_unary_operator(unary_operator_fn op) {
     if (stack_size < 1) {
         return false;
@@ -61,6 +62,7 @@ double my_fmod(double lhs, double rhs) {
     return result;
 }
 
+//This function is given to us by Kerry Veenstra asgn3.pdf page 6
 bool parse_double(const char *s, double *d) {
     char *endptr;
     double result = strtod(s, &endptr);

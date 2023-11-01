@@ -13,6 +13,7 @@ double Abs(double x) {
     return y;
 }
 
+//This function was given to us by Kerry Veenstra asgn3.pdf page 4
 double Sqrt(double x) {
     // Check domain.
     if (x < 0) {

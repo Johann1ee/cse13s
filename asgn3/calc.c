@@ -38,7 +38,8 @@ int main(int argc, char *argv[]) {
         } else {
             return 0;
         }
-
+	
+	//token fgets input algorithm is from Kerry Veenstra asgn3.pdf pages 8-9
         const char *token = strtok_r(expr, " ", &saveptr);
 
         while (token != NULL && !error) {

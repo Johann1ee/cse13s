@@ -47,6 +47,7 @@ void stack_clear(void) {
     top = -1;
 }
 
+//This function is given to us by Kerry Veenstra asgn3.pdf page 7
 void stack_print(void) {
     // make sure we don't print stack[0] when it is empty
     if (stack_size == 0) {
