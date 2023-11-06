@@ -22,7 +22,7 @@ void fix_heap(Stats *stats, int *A, int first, int last) {
         if (cmp(stats, A[parent], A[largest_child]) < 0) {
             swap(stats, &A[parent], &A[largest_child]);
 
-            parent = move(stats, largest_child);
+            parent = largest_child;
         }
 
         else {
