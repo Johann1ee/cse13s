@@ -46,7 +46,8 @@ int main(int argc, char *argv[]) {
         case 'n': n = atoi(optarg); break;
         case 'p': p = atoi(optarg); break;
         case 'r': seed = atoi(optarg); break;
-       	case '?': printf("./sorting: invalid option -- '%c'\n", opt);
+        case '?':
+            printf("./sorting: invalid option -- '%c'\n", opt);
             printf("SYNOPSIS\n"
                    "   A collection of comparison-based sorting algorithms.\n\n"
                    "USAGE\n"
@@ -80,21 +81,21 @@ int main(int argc, char *argv[]) {
 
         insertion_sort(&stats, A, n);
         print_stats(&stats, "Insertion Sort", n);
-	
-	int k = 0;
-	while (k < p && k < n){
-		for (int j = 0; j < 5; j++){
-			printf("%13d", A[k]);
-			k++;
-			if (k >= p || k >= n){
-                                printf("%c", '\n');
-				break;
-			}
-			if (j == 4){
-				printf("%c", '\n');
-			}
-		}
-	}
+
+        int k = 0;
+        while (k < p && k < n) {
+            for (int j = 0; j < 5; j++) {
+                printf("%13d", A[k]);
+                k++;
+                if (k >= p || k >= n) {
+                    printf("%c", '\n');
+                    break;
+                }
+                if (j == 4) {
+                    printf("%c", '\n');
+                }
+            }
+        }
 
         free(A);
     }
@@ -111,20 +112,20 @@ int main(int argc, char *argv[]) {
 
         heap_sort(&stats, A, n);
         print_stats(&stats, "Heap Sort", n);
-        
-	int k = 0;
-        while (k < p && k < n){
-                for (int j = 0; j < 5; j++){
-                        printf("%13d", A[k]);
-                        k++;
-                        if (k >= p || k >= n){
-                                printf("%c", '\n');
-                                break;
-                        }
-                        if (j == 4){
-                                printf("%c", '\n');
-                        }
+
+        int k = 0;
+        while (k < p && k < n) {
+            for (int j = 0; j < 5; j++) {
+                printf("%13d", A[k]);
+                k++;
+                if (k >= p || k >= n) {
+                    printf("%c", '\n');
+                    break;
                 }
+                if (j == 4) {
+                    printf("%c", '\n');
+                }
+            }
         }
 
         free(A);
@@ -144,18 +145,18 @@ int main(int argc, char *argv[]) {
         print_stats(&stats, "Shell Sort", n);
 
         int k = 0;
-        while (k < p && k < n){
-                for (int j = 0; j < 5; j++){
-                        printf("%13d", A[k]);
-                        k++;
-                        if (k >= p || k >= n){
-                                printf("%c", '\n');
-                                break;
-                        }
-                        if (j == 4){
-                                printf("%c", '\n');
-                        }
+        while (k < p && k < n) {
+            for (int j = 0; j < 5; j++) {
+                printf("%13d", A[k]);
+                k++;
+                if (k >= p || k >= n) {
+                    printf("%c", '\n');
+                    break;
                 }
+                if (j == 4) {
+                    printf("%c", '\n');
+                }
+            }
         }
 
         free(A);
@@ -175,18 +176,18 @@ int main(int argc, char *argv[]) {
         print_stats(&stats, "Quick Sort", n);
 
         int k = 0;
-        while (k < p && k < n){
-                for (int j = 0; j < 5; j++){
-                        printf("%13d", A[k]);
-                        k++;
-                        if (k >= p || k >= n){
-                                printf("%c", '\n');
-                                break;
-                        }
-                        if (j == 4){
-                                printf("%c", '\n');
-                        }
+        while (k < p && k < n) {
+            for (int j = 0; j < 5; j++) {
+                printf("%13d", A[k]);
+                k++;
+                if (k >= p || k >= n) {
+                    printf("%c", '\n');
+                    break;
                 }
+                if (j == 4) {
+                    printf("%c", '\n');
+                }
+            }
         }
 
         free(A);
@@ -206,18 +207,18 @@ int main(int argc, char *argv[]) {
         print_stats(&stats, "Batcher Sort", n);
 
         int k = 0;
-        while (k < p && k < n){
-                for (int j = 0; j < 5; j++){
-                        printf("%13d", A[k]);
-                        k++;
-                        if (k >= p || k >= n){
-                                printf("%c", '\n');
-                                break;
-                        }
-                        if (j == 4){
-                                printf("%c", '\n');
-                        }
+        while (k < p && k < n) {
+            for (int j = 0; j < 5; j++) {
+                printf("%13d", A[k]);
+                k++;
+                if (k >= p || k >= n) {
+                    printf("%c", '\n');
+                    break;
                 }
+                if (j == 4) {
+                    printf("%c", '\n');
+                }
+            }
         }
 
         free(A);
