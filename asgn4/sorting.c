@@ -10,61 +10,75 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define HELPMESSAGE                                                                                \
+    "SYNOPSIS\n"                                                                                   \
+    "   A collection of comparison-based sorting algorithms.\n\n"                                  \
+    "USAGE\n"                                                                                      \
+    "   ./sorting [-Hahbsqi] [-n length] [-p elements] [-r seed]\n\n"                              \
+    "OPTIONS\n"                                                                                    \
+    "   -H              Display program help and usage.\n"                                         \
+    "   -a              Enable all sorts.\n"                                                       \
+    "   -h              Enable Heap Sort.\n"                                                       \
+    "   -b              Enable Batcher Sort.\n"                                                    \
+    "   -s              Enable Shell Sort.\n"                                                      \
+    "   -q              Enable Quick Sort.\n"                                                      \
+    "   -i              Enable Insertion Sort.\n"                                                  \
+    "   -n length       Specify number of array elements (default: 100).\n"                        \
+    "   -p elements     Specify number of elements to print (default: 100).\n"                     \
+    "   -r seed         Specify random seed (default: 13371453).\n"
+
 int main(int argc, char *argv[]) {
     int opt;
     int seed = 13371453;
     int p = 100;
     int n = 100;
     Set tracker = set_empty();
+    int morph = 0;
     unsigned int bit_mask = 0x3FFFFFFF;
 
     while ((opt = getopt(argc, argv, "Hahbsqin:p:r:")) != -1) {
         switch (opt) {
-        case 'H':
-            printf("SYNOPSIS\n"
-                   "   A collection of comparison-based sorting algorithms.\n\n"
-                   "USAGE\n"
-                   "   ./sorting [-Hahbsqi] [-n length] [-p elements] [-r seed]\n\n"
-                   "OPTIONS\n"
-                   "-H              Display program help and usage.\n"
-                   "-a              Enable all sorts.\n"
-                   "-h              Enable Heap Sort.\n"
-                   "-b              Enable Batcher Sort.\n"
-                   "-s              Enable Shell Sort.\n"
-                   "-q              Enable Quick Sort.\n"
-                   "-i              Enable Insertion Sort.\n"
-                   "-n length       Specify number of array elements (default: 100).\n"
-                   "-p elements     Specify number of elements to print (default: 100).\n"
-                   "-r seed         Specify random seed (default: 13371453).\n");
-            return 0;
-        case 'a': tracker = set_universal(); break;
-        case 'h': tracker = set_insert(tracker, 0); break;
-        case 'b': tracker = set_insert(tracker, 1); break;
-        case 's': tracker = set_insert(tracker, 2); break;
-        case 'q': tracker = set_insert(tracker, 3); break;
-        case 'i': tracker = set_insert(tracker, 4); break;
+        case 'H': printf(HELPMESSAGE); return 0;
+        case 'a':
+            tracker = set_universal();
+            morph++;
+            break;
+        case 'h':
+            tracker = set_insert(tracker, 0);
+            morph++;
+            break;
+        case 'b':
+            tracker = set_insert(tracker, 1);
+            morph++;
+            break;
+        case 's':
+            tracker = set_insert(tracker, 2);
+            morph++;
+            break;
+        case 'q':
+            tracker = set_insert(tracker, 3);
+            morph++;
+            break;
+        case 'i':
+            tracker = set_insert(tracker, 4);
+            morph++;
+            break;
         case 'n': n = atoi(optarg); break;
         case 'p': p = atoi(optarg); break;
         case 'r': seed = atoi(optarg); break;
-        case '?':
+        case '?': printf(HELPMESSAGE); exit(0);
+        default:
+            morph++;
             printf("./sorting: invalid option -- '%c'\n", opt);
-            printf("SYNOPSIS\n"
-                   "   A collection of comparison-based sorting algorithms.\n\n"
-                   "USAGE\n"
-                   "   ./sorting [-Hahbsqi] [-n length] [-p elements] [-r seed]\n\n"
-                   "OPTIONS\n"
-                   "-H              Display program help and usage.\n"
-                   "-a              Enable all sorts.\n"
-                   "-h              Enable Heap Sort.\n"
-                   "-b              Enable Batcher Sort.\n"
-                   "-s              Enable Shell Sort.\n"
-                   "-q              Enable Quick Sort.\n"
-                   "-i              Enable Insertion Sort.\n"
-                   "-n length       Specify number of array elements (default: 100).\n"
-                   "-p elements     Specify number of elements to print (default: 100).\n"
-                   "-r seed         Specify random seed (default: 13371453).\n");
-            return 0;
+            printf(HELPMESSAGE);
+            exit(0);
         }
+    }
+
+    if (morph < 1) {
+        printf("Select at least one sort to perform.\n");
+        printf(HELPMESSAGE);
+        return 0;
     }
 
     Stats stats;
