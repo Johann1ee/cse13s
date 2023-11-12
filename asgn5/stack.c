@@ -85,7 +85,7 @@ uint32_t stack_size(const Stack *s){
 	if (stack_empty(s)){
 		return 0;
 	} else{
-		return s->top - 1;
+		return s->top;
 	}
 }
 
