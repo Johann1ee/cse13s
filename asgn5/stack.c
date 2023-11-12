@@ -61,7 +61,7 @@ bool stack_peek(const Stack *s, uint32_t *val){
 		return false;
 	}
 
-	*val = s->items[s->top];
+	*val = s->items[(s->top) - 1];
 	return true;
 }
 
@@ -85,12 +85,12 @@ uint32_t stack_size(const Stack *s){
 	if (stack_empty(s)){
 		return 0;
 	} else{
-		return s->top + 1;
+		return s->top;
 	}
 }
 
 void stack_copy(Stack *dst, const Stack *src){
-	assert(dst->capacity == src->capacity);
+	assert(dst->capacity >= src->capacity);
 
 	dst->items = src->items;
 	dst->top = src->top;
