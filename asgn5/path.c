@@ -24,12 +24,8 @@ void path_free(Path **pp){
 	}
 }
 
-uint32_t path_vertices(const Path *p){
-	if (p && p->vertices){
-		return stack_size(p->vertices);
-	}else{
-		return 0;
-	}
+uint32_t path_vertices(const Path *p){	
+	return stack_size(p->vertices);
 }
 
 uint32_t path_distance(const Path *p){

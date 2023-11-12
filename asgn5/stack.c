@@ -66,7 +66,7 @@ bool stack_peek(const Stack *s, uint32_t *val){
 }
 
 bool stack_empty(const Stack *s){
-	if (s->top == 0){
+	if ((s->top) - 1 == 0){
 		return true;
 	} else{
 		return false;
