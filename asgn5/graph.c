@@ -94,7 +94,7 @@ void graph_visit_vertex(Graph *g, uint32_t v){
 }
 
 void graph_unvisit_vertex(Graph *g, uint32_t v){
-	g->visted[v] = false;
+	g->names[v] = false;
 }
 
 bool graph_visited(const Graph *g, uint32_t v){
