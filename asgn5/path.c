@@ -37,30 +37,30 @@ void path_add(Path *p, uint32_t val, const Graph *g) {
         p->total_weight = 0;
         stack_push(p->vertices, val);
     } else {
-        uint32_t *holder = NULL;
-        stack_peek(p->vertices, holder);
+        uint32_t holder = 0;
+        stack_peek(p->vertices, &holder);
         stack_push(p->vertices, val);
 
-        p->total_weight += graph_get_weight(g, *holder, val);
+        p->total_weight += graph_get_weight(g, holder, val);
     }
 }
 
 uint32_t path_remove(Path *p, const Graph *g) {
-    uint32_t *holder = NULL;
-    stack_peek(p->vertices, holder);
+    uint32_t holder = 0;
+    stack_peek(p->vertices, &holder);
 
     if (stack_size(p->vertices) <= 2) {
-        stack_pop(p->vertices, holder);
+        stack_pop(p->vertices, &holder);
         p->total_weight = 0;
     } else {
-        stack_pop(p->vertices, holder);
+        stack_pop(p->vertices, &holder);
 
-        uint32_t *temp = NULL;
-        stack_peek(p->vertices, temp);
-        p->total_weight -= graph_get_weight(g, *temp, *holder);
+        uint32_t temp = 0;
+        stack_peek(p->vertices, &temp);
+        p->total_weight -= graph_get_weight(g, temp, holder);
     }
 
-    return *holder;
+    return holder;
 }
 
 void path_copy(Path *dst, const Path *src) {
