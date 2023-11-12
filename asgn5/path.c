@@ -21,6 +21,10 @@ void path_free(Path **pp){
 	if (*pp){
 		free(*pp);
 	}
+
+	if (pp != NULL){
+		*pp = NULL;
+	}
 }
 
 
