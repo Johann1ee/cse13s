@@ -2,6 +2,7 @@
 
 #include <stdlib.h>
 #include <assert.h>
+#include <stdint.h>
 
 typedef struct path {
 	uint32_t total_weight;
@@ -16,27 +17,18 @@ Path *path_create(uint32_t capacity){
 }
 
 void path_free(Path **pp){
-	stack_free(&(*pp)->vertices);
-	
 	if (*pp){
+		stack_free(&(*pp)->vertices);
 		free(*pp);
-	}
-
-	if (pp != NULL){
 		*pp = NULL;
 	}
 }
-
 
 uint32_t path_vertices(const Path *p){
 	return stack_size(p->vertices);
 }
 
 uint32_t path_distance(const Path *p){
-	if (p == NULL){
-		return 0;
-	}
-
 	return p->total_weight;
 }
 
