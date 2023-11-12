@@ -29,9 +29,9 @@ void path_free(Path **pp){
 
 
 uint32_t path_vertices(const Path *p){
-	uint32_t *topper = NULL;
-	stack_peek(p->vertices, topper);
-	return *topper;
+	uint32_t topper = 0;
+	stack_peek(p->vertices, &topper);
+	return topper;
 }
 
 uint32_t path_distance(const Path *p){
