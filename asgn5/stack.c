@@ -90,9 +90,12 @@ uint32_t stack_size(const Stack *s){
 }
 
 void stack_copy(Stack *dst, const Stack *src){
-	assert(dst->capacity >= src->capacity);
+	assert(dst->capacity >= src->top);
 
-	dst->items = src->items;
+	for (uint32_t i = 0; i < src->top; i++){
+		dst->items[i] = src->items[i];
+	}
+
 	dst->top = src->top;
 }
 

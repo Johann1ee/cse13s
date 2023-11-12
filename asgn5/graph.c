@@ -98,10 +98,6 @@ void graph_unvisit_vertex(Graph *g, uint32_t v){
 }
 
 bool graph_visited(const Graph *g, uint32_t v){
-	if (g->visited[v]){
-		return true;
-	}else{
-		return false;
-	}
+	return g->visited[v]
 }
 
