@@ -54,6 +54,8 @@ void graph_free(Graph **gp){
 
 		free(*gp);
 	}
+
+	**gp = NULL;
 }
 
 uint32_t graph_vertices(const Graph *g){
@@ -75,8 +77,6 @@ char **graph_get_names(const Graph *g){
 
 void graph_add_edge(Graph *g, uint32_t start, uint32_t end, uint32_t weight){
 	g->weights[start][end] = weight;
-	//Next line is assuming undirected
-	g->weights[end][start] = weight;
 }
 
 uint32_t graph_get_weight(const Graph *g, uint32_t start, uint32_t end){
