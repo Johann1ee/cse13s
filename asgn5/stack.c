@@ -51,7 +51,7 @@ bool stack_pop(Stack *s, uint32_t *val){
 		return false;
 	}
 
-	*val = s->items[s->top]; 
+	*val = s->items[(s->top) - 1]; 
 	s->top--;
 	return true;
 }
