@@ -54,8 +54,10 @@ void graph_free(Graph **gp){
 
 		free(*gp);
 	}
-
-	**gp = NULL;
+	
+	if (*gp != NULL){
+		*gp = NULL;
+	}
 }
 
 uint32_t graph_vertices(const Graph *g){
