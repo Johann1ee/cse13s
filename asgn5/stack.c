@@ -82,11 +82,7 @@ bool stack_full(const Stack *s){
 }
 
 uint32_t stack_size(const Stack *s){
-	if (stack_empty(s)){
-		return 0;
-	} else{
-		return s->top;
-	}
+	return s->top;
 }
 
 void stack_copy(Stack *dst, const Stack *src){

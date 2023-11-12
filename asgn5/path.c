@@ -25,10 +25,6 @@ void path_free(Path **pp){
 }
 
 uint32_t path_vertices(const Path *p){	
-	if (p== NULL || p->vertices == NULL){
-		return 0;
-	}
-
 	return stack_size(p->vertices);
 }
 
