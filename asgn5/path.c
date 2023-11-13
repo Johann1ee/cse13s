@@ -69,11 +69,7 @@ void path_copy(Path *dst, const Path *src) {
 }
 
 void path_print(const Path *p, FILE *f, const Graph *g) {
-    for (uint32_t i = 0; i < path_vertices(p); i++) {
-        const char *name = graph_get_vertex_name(g, i);
-
-        fprintf(f, "%s\n", name);
+    if (g != NULL) {
+        fprintf(f, "%u %u\n", path_vertices(p), path_distance(p));
     }
-
-    fprintf(f, "\n");
 }

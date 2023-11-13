@@ -1,5 +1,6 @@
 #include "graph.h"
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -103,5 +104,24 @@ bool graph_visited(const Graph *g, uint32_t v) {
         return true;
     } else {
         return false;
+    }
+}
+
+void graph_print(const Graph *g) {
+    printf("Graph:\n");
+    printf("Vertices: %u\n", g->vertices);
+
+    printf("Vertex Names:\n");
+    for (uint32_t i = 0; i < g->vertices; i++) {
+        printf("%u: %s\n", i, g->names[i]);
+    }
+
+    printf("Adjacency Matrix:\n");
+    for (uint32_t i = 0; i < g->vertices; i++) {
+        for (uint32_t j = 0; j < g->vertices; j++) {
+            if (g->weights[i][j] != 0) {
+                printf("%u %u %u\n", i, j, g->weights[i][j]);
+            }
+        }
     }
 }
