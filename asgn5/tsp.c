@@ -21,21 +21,23 @@
     "	     graph and the command-line options it accepts, exiting the\n"                           \
     "	     program afterwards.\n"
 
-void dfs(Graph *g, Path *p, Path *f, uint32_t vertex, uint32_t starter) {
+void dfs(Graph *g, Path *p, Path *f, uint32_t vertex, uint32_t starter, uint32_t *min_dist) {
     graph_visit_vertex(g, vertex);
     path_add(p, vertex, g);
     if (path_vertices(p) == graph_vertices(g)) {
         if (graph_get_weight(g, vertex, starter) != 0) {
             path_add(p, starter, g);
-            printf("%u %u\n", path_distance(p), path_vertices(p));
-        }
-        if (path_distance(p) < path_distance(f)) {
-            path_copy(f, p);
+            uint32_t curr_dist = path_distance(p);
+
+            if (curr_dist < *min_dist) {
+                *min_dist = curr_dist;
+                path_copy(f, p);
+            }
         }
     } else {
         for (uint32_t i = 0; i < graph_vertices(g); i++) {
             if (graph_get_weight(g, vertex, i) != 0 && !graph_visited(g, i)) {
-                dfs(g, p, f, i, starter);
+                dfs(g, p, f, i, starter, min_dist);
             }
         }
     }
@@ -88,6 +90,9 @@ int main(int argc, char *argv[]) {
                 graph_add_edge(theGraph, start, end, weight);
             }
 
+            if (infile != stdin)
+                fclose(infile);
+
             break;
         case 'o':
             outfile = fopen(optarg, "w");
@@ -102,8 +107,19 @@ int main(int argc, char *argv[]) {
     Path *tempPath = path_create(graph_vertices(theGraph));
     Path *finalPath = path_create(graph_vertices(theGraph));
 
-    dfs(theGraph, tempPath, finalPath, START_VERTEX, START_VERTEX);
-    path_print(finalPath, outfile, theGraph);
+    uint32_t min_dist = UINT32_MAX;
+    dfs(theGraph, tempPath, finalPath, START_VERTEX, START_VERTEX, &min_dist);
+
+    if (path_distance(finalPath) != 0) {
+        fprintf(outfile, "Alissa starts at:\n");
+        path_print(finalPath, outfile, theGraph);
+        fprintf(outfile, "%s\nTotal Distance: %u\n", graph_get_vertex_name(theGraph, START_VERTEX),
+            path_distance(finalPath));
+    } else {
+        fprintf(outfile, "No path found! Alissa is lost!\n");
+    }
+    if (outfile != stdout)
+        fclose(outfile);
 
     path_free(&tempPath);
     path_free(&finalPath);
