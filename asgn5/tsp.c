@@ -25,7 +25,6 @@ void dfs(Graph *g, Path *p, Path *f, uint32_t vertex, uint32_t starter, uint32_t
     graph_visit_vertex(g, vertex);
     path_add(p, vertex, g);
 
-
     if (path_vertices(p) == graph_vertices(g)) {
         if (graph_get_weight(g, vertex, starter) != 0) {
             path_add(p, starter, g);
@@ -34,9 +33,8 @@ void dfs(Graph *g, Path *p, Path *f, uint32_t vertex, uint32_t starter, uint32_t
             if (curr_dist < *min_dist) {
                 *min_dist = curr_dist;
                 path_copy(f, p);
-
             }
-	    path_remove(p, g);
+            path_remove(p, g);
         }
     }
     for (uint32_t i = 0; i < graph_vertices(g); i++) {
