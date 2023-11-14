@@ -53,11 +53,11 @@ uint32_t path_remove(Path *p, const Graph *g) {
         stack_pop(p->vertices, &holder);
         p->total_weight = 0;
     } else {
-        stack_pop(p->vertices, &holder);
-
         uint32_t temp = 0;
+        stack_pop(p->vertices, &temp);
         stack_peek(p->vertices, &temp);
-        p->total_weight -= graph_get_weight(g, temp, holder);
+
+        p->total_weight = p->total_weight - graph_get_weight(g, holder, temp);
     }
 
     return holder;

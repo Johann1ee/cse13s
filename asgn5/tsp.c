@@ -24,14 +24,19 @@
 void dfs(Graph *g, Path *p, Path *f, uint32_t vertex, uint32_t starter, uint32_t *min_dist) {
     graph_visit_vertex(g, vertex);
     path_add(p, vertex, g);
+
     if (path_vertices(p) == graph_vertices(g)) {
         if (graph_get_weight(g, vertex, starter) != 0) {
+            printf("%u %u\n", path_vertices(p), path_distance(p));
+
             path_add(p, starter, g);
             uint32_t curr_dist = path_distance(p);
 
             if (curr_dist < *min_dist) {
                 *min_dist = curr_dist;
                 path_copy(f, p);
+
+                path_remove(p, g);
             }
         }
     } else {

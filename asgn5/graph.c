@@ -45,6 +45,12 @@ void graph_free(Graph **gp) {
             free((*gp)->weights);
         }
 
+        for (uint32_t i = 0; i < (*gp)->vertices; i++) {
+            if ((*gp)->names[i]) {
+                free((*gp)->names[i]);
+            }
+        }
+
         if ((*gp)->names) {
             free((*gp)->names);
         }
