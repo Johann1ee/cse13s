@@ -41,7 +41,7 @@ bool stack_push(Stack *s, uint32_t val) {
         return false;
     }
 
-    s->items[s->top] = val;
+    s->items[(s->top)] = val;
     s->top++;
     return true;
 }
