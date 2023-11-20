@@ -1,5 +1,5 @@
 CC=clang
-CFLAGS = -Wall -Wextra -Wstrict-prototypes -Werror -pedantic -gdwarf-4
+CFLAGS = -Werror -Wall -Wextra -Wconversion -Wdouble-promotion -Wstrict-prototypes -pedantic
 LFLAGS = -lm
 
 EXECBIN=colorb

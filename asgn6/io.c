@@ -17,8 +17,9 @@ void read_uint16(FILE *fin, uint16_t *px) {
     read_uint8(fin, &temp1);
     read_uint8(fin, &temp2);
 
-    *px = temp2 << 8;
-    *px = *px | temp1;
+    uint16_t temp3 = temp2;
+    temp3 <<= 8;
+    *px = temp3 | temp1;
 }
 
 void read_uint32(FILE *fin, uint32_t *px) {
@@ -27,8 +28,9 @@ void read_uint32(FILE *fin, uint32_t *px) {
     read_uint16(fin, &temp1);
     read_uint16(fin, &temp2);
 
-    *px = temp2 << 16;
-    *px = *px | temp1;
+    uint32_t temp3 = temp2;
+    temp3 <<= 16;
+    *px = temp3 | temp1;
 }
 
 void write_uint8(FILE *fout, uint8_t x) {
@@ -40,11 +42,11 @@ void write_uint8(FILE *fout, uint8_t x) {
 }
 
 void write_uint16(FILE *fout, uint16_t x) {
-    write_uint8(fout, x);
-    write_uint8(fout, x >> 8);
+    write_uint8(fout, (uint8_t) x);
+    write_uint8(fout, (uint8_t) x >> 8);
 }
 
 void write_uint32(FILE *fout, uint32_t x) {
-    write_uint16(fout, x);
-    write_uint16(fout, x >> 16);
+    write_uint16(fout, (uint16_t) x);
+    write_uint16(fout, (uint16_t) x >> 16);
 }

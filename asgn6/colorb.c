@@ -15,9 +15,9 @@ int main(int argc, char *argv[]) {
 
     while ((opt = getopt(argc, argv, "hi:o:")) != -1) {
         if (argc < 2) {
-                fprintf(stderr, "colorb: -i option is required\n");
-                printf(HELPMESSAGE);
-                exit(1);
+            fprintf(stderr, "colorb: -i option is required\n");
+            printf(HELPMESSAGE);
+            exit(1);
         }
         switch (opt) {
         case 'h': printf(HELPMESSAGE); return 0;
@@ -26,35 +26,32 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    if (chinfile == NULL){
-            fprintf(stderr, "colorb:  -i option is required\n");
-            printf(HELPMESSAGE);
-            exit(1);
+    if (chinfile == NULL) {
+        fprintf(stderr, "colorb:  -i option is required\n");
+        printf(HELPMESSAGE);
+        exit(1);
     }
-    if (choutfile == NULL){
-            fprintf(stderr, "colorb:  -o option is required\n");
-            printf(HELPMESSAGE);
-            exit(1);
+    if (choutfile == NULL) {
+        fprintf(stderr, "colorb:  -o option is required\n");
+        printf(HELPMESSAGE);
+        exit(1);
     }
 
     FILE *infile = fopen(chinfile, "rb");
-    if (infile == NULL){
-            fprintf(stderr, "colorb:  unknown or poorly formatted option -i\n");
-            printf(HELPMESSAGE);
-            fclose(infile);
-            exit(1);
+    if (infile == NULL) {
+        fprintf(stderr, "colorb:  unknown or poorly formatted option -i\n");
+        printf(HELPMESSAGE);
+        fclose(infile);
+        exit(1);
     }
 
     FILE *outfile = fopen(choutfile, "wb");
-    if (outfile == NULL){
-            fprintf(stderr, "colorb:  unknown or poorly formatted option -o\n");
-            printf(HELPMESSAGE);
-            fclose(outfile);
-            exit(1);
+    if (outfile == NULL) {
+        fprintf(stderr, "colorb:  unknown or poorly formatted option -o\n");
+        printf(HELPMESSAGE);
+        fclose(outfile);
+        exit(1);
     }
-
-
-
 
     BMP *colorImage = bmp_create(infile);
     bmp_reduce_palette(colorImage);
@@ -69,4 +66,3 @@ int main(int argc, char *argv[]) {
     }
     return 0;
 }
-
