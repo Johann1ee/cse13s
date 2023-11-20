@@ -43,10 +43,12 @@ void write_uint8(FILE *fout, uint8_t x) {
 
 void write_uint16(FILE *fout, uint16_t x) {
     write_uint8(fout, (uint8_t) x);
-    write_uint8(fout, (uint8_t) x >> 8);
+    x >>= 8;
+    write_uint8(fout, (uint8_t) x);
 }
 
 void write_uint32(FILE *fout, uint32_t x) {
     write_uint16(fout, (uint16_t) x);
-    write_uint16(fout, (uint16_t) x >> 16);
+    x >>= 16;
+    write_uint16(fout, (uint16_t) x);
 }
