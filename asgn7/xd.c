@@ -23,9 +23,9 @@ int main(int argc, char *argv[]) {
 
         //check if buffer is full
         if (readBytes == BUFFER_SIZE) {
-            printf("%08X: ", index);
+            printf("%08x: ", index);
             for (size_t i = 0; i < readBytes; i++) {
-                printf("%02X", buffer[i]);
+                printf("%02x", buffer[i]);
                 if (i % 2 == 1) {
                     printf(" ");
                 }
@@ -45,9 +45,9 @@ int main(int argc, char *argv[]) {
     }
 
     if (readBytes > 0) {
-        printf("%08X: ", index);
+        printf("%08x: ", index);
         for (size_t i = 0; i < readBytes; i++) {
-            printf("%02X", buffer[i]);
+            printf("%02x", buffer[i]);
             if (i % 2 == 1) {
                 printf(" ");
             }
