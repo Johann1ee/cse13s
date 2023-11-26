@@ -9,10 +9,10 @@ void z(char c[a], int f, n e) {
     m("%08x: ", f);
     for (n i = 0; i < a; i++) {
         m((i < e) ? "%02x" : "  ", (unsigned char) y);
-        m((i % 2 == 1) ? " " : "");
+        m((i % 2 == 1) ? " " : 0);
     }
     for (n i = 0; i < a; i++)
-	y = (y < 32 || y >= 127) ? '.' : y;
+        y = (y < 32 || y >= 127) ? '.' : y;
     m(" ");
     for (n i = 0; i < e; i++)
         putchar(y);
@@ -25,7 +25,7 @@ int main(int g, char *h[]) {
     if (g == 2)
         b = open(h[1], O_RDONLY, 0);
     if (b == -1)
-        return (1);
+        return 1;
     while ((d = (n) read(b, c + e, a - e)) > 0) {
         e += (n) d;
         if (e == a) {
