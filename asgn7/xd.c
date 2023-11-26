@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
             }
 
             for (size_t i = 0; i < BUFFER_SIZE; i++) {
-                if (buffer[i] <= 32 || buffer[i] >= 127) {
+                if (buffer[i] < 32 || buffer[i] >= 127) {
                     buffer[i] = '.';
                 }
             }
@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
             }
         }
         for (size_t i = 0; i < BUFFER_SIZE; i++) {
-            if (buffer[i] <= 32 || buffer[i] >= 127) {
+            if (buffer[i] < 32 || buffer[i] >= 127) {
                 buffer[i] = '.';
             }
         }
