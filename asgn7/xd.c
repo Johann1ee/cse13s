@@ -1,42 +1,80 @@
 #include <fcntl.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
-#define n size_t
-#define a 16
-#define m printf
-#define y c[i]
-void z(char c[a], int f, n e) {
-    m("%08x: ", f);
-    for (n i = 0; i < a; i++) {
-        m((i < e) ? "%02x" : "  ", (unsigned char) y);
-        m((i % 2 == 1) ? " " : 0);
-    }
-    for (n i = 0; i < a; i++)
-        y = (y < 32 || y >= 127) ? '.' : y;
-    m(" ");
-    for (n i = 0; i < e; i++)
-        putchar(y);
-    m("\n");
-}
-int main(int g, char *h[]) {
-    int b = 0, f = 0;
-    char c[a];
-    n d = 0, e = 0;
-    if (g == 2)
-        b = open(h[1], O_RDONLY, 0);
-    if (b == -1)
-        return 1;
-    while ((d = (n) read(b, c + e, a - e)) > 0) {
-        e += (n) d;
-        if (e == a) {
-            z(c, f, e);
-            e = 0;
-            f += a;
+
+#define BUFFER_SIZE (size_t) 16
+
+int main(int argc, char *argv[]) {
+    int fd = 0;
+    char buffer[BUFFER_SIZE];
+    ssize_t reader = 0;
+    size_t readBytes = 0;
+    int index = 0;
+
+    //if there is a file attached it changes the open path
+    //to the file
+    if (argc == 2) {
+        fd = open(argv[1], O_RDONLY, 0);
+
+        if (fd == -1) {
+            exit(1);
+        }
+    } //Since fd is initialized at 0 it takes from stdin by default
+
+    while ((reader = read(fd, buffer + readBytes, BUFFER_SIZE - readBytes)) > 0) {
+        readBytes += (size_t) reader;
+
+        //check if buffer is full
+        if (readBytes == BUFFER_SIZE) {
+
+            printf("%08x: ", index);
+            for (size_t i = 0; i < readBytes; i++) {
+                printf("%02x", (unsigned char) buffer[i]);
+                if (i % 2 == 1) {
+                    printf(" ");
+                }
+            }
+
+            for (size_t i = 0; i < BUFFER_SIZE; i++) {
+                if (buffer[i] < 32 || buffer[i] >= 127) {
+                    buffer[i] = '.';
+                }
+            }
+
+            printf(" %.16s\n", buffer);
+
+            //new line and reset readBytes
+            readBytes = 0;
+            index += 16;
         }
     }
-    if (e > 0) {
-        z(c, f, e);
+
+    if (readBytes > 0) {
+
+        printf("%08x: ", index);
+        for (size_t i = 0; i < BUFFER_SIZE; i++) {
+            if (i < readBytes) {
+                printf("%02x", (unsigned char) buffer[i]);
+            } else
+                printf("  ");
+            if (i % 2 == 1) {
+                printf(" ");
+            }
+        }
+        for (size_t i = 0; i < BUFFER_SIZE; i++) {
+            if (buffer[i] < 32 || buffer[i] >= 127) {
+                buffer[i] = '.';
+            }
+        }
+
+        printf(" ");
+        for (size_t i = 0; i < readBytes; i++) {
+            putchar(buffer[i]);
+        }
+        printf("\n");
     }
-    close(b);
+    close(fd);
+
     return 0;
 }
