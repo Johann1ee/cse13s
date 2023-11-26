@@ -7,7 +7,7 @@
 
 int main(int argc, char *argv[]) {
     int fd = 0;
-    char buffer[BUFFER_SIZE];
+    char buffer[BUFFER_SIZE] = { 0 };
     ssize_t reader = 0;
     size_t readBytes = 0;
     int index = 0;
@@ -23,20 +23,22 @@ int main(int argc, char *argv[]) {
 
         //check if buffer is full
         if (readBytes == BUFFER_SIZE) {
+
             printf("%08x: ", index);
             for (size_t i = 0; i < readBytes; i++) {
-                printf("%02x", buffer[i]);
+                printf("%02x", (unsigned char) buffer[i]);
                 if (i % 2 == 1) {
                     printf(" ");
                 }
             }
 
             for (size_t i = 0; i < BUFFER_SIZE; i++) {
-                if (buffer[i] == '\n') {
+                if (buffer[i] < 32 || buffer[i] > 127) {
                     buffer[i] = '.';
                 }
             }
-            printf("  %s\n", buffer);
+
+            printf(" %.16s\n", buffer);
 
             //new line and reset readBytes
             readBytes = 0;
@@ -45,21 +47,29 @@ int main(int argc, char *argv[]) {
     }
 
     if (readBytes > 0) {
+
         printf("%08x: ", index);
-        for (size_t i = 0; i < readBytes; i++) {
-            printf("%02x", buffer[i]);
+        for (size_t i = 0; i < BUFFER_SIZE; i++) {
+            if (i < readBytes) {
+                printf("%02x", (unsigned char) buffer[i]);
+            } else
+                printf("  ");
             if (i % 2 == 1) {
                 printf(" ");
             }
         }
         for (size_t i = 0; i < BUFFER_SIZE; i++) {
-            if (buffer[i] == '\n') {
+            if (buffer[i] < 32 || buffer[i] > 127) {
                 buffer[i] = '.';
             }
         }
-        printf("  %s\n", buffer);
-    }
 
+        printf(" ");
+        for (size_t i = 0; i < readBytes; i++) {
+            putchar(buffer[i]);
+        }
+    }
+    printf("\n");
     close(fd);
 
     return 0;
