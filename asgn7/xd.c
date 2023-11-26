@@ -7,7 +7,7 @@
 
 int main(int argc, char *argv[]) {
     int fd = 0;
-    char buffer[BUFFER_SIZE] = { 0 };
+    char buffer[BUFFER_SIZE];
     ssize_t reader = 0;
     size_t readBytes = 0;
     int index = 0;
@@ -16,6 +16,10 @@ int main(int argc, char *argv[]) {
     //to the file
     if (argc == 2) {
         fd = open(argv[1], O_RDONLY, 0);
+
+        if (fd == -1) {
+            exit(1);
+        }
     } //Since fd is initialized at 0 it takes from stdin by default
 
     while ((reader = read(fd, buffer + readBytes, BUFFER_SIZE - readBytes)) > 0) {
@@ -68,7 +72,7 @@ int main(int argc, char *argv[]) {
         for (size_t i = 0; i < readBytes; i++) {
             putchar(buffer[i]);
         }
-	printf("\n");
+        printf("\n");
     }
     close(fd);
 
