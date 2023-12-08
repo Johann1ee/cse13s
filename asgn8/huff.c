@@ -8,7 +8,7 @@
 
 #define HELPMESSAGE                                                                                \
     "Usage: huff -i infile -o outfile\n"                                                           \
-    "huff -h\n"
+    "       huff -h\n"
 
 typedef struct Code {
     uint64_t code;
@@ -109,25 +109,25 @@ void huff_compress_file(BitWriter *outbuf, FILE *fin, uint32_t filesize, uint16_
 }
 
 int main(int argc, char *argv[]) {
-    if (argc != 3) {
-        printf("huff:  -i option is required");
+    if (argc != 5) {
+        printf("huff:  -i option is required\n");
         printf(HELPMESSAGE);
         return 0;
     }
 
-    const char *infile = argv[1];
-    const char *outfile = argv[2];
+    const char *infile = argv[2];
+    const char *outfile = argv[4];
 
     FILE *input_file = fopen(infile, "rb");
     if (input_file == NULL) {
-        printf("huff:  error reading input file %s", argv[1]);
+        printf("huff:  error reading input file %s\n", infile);
         printf(HELPMESSAGE);
         exit(1);
     }
 
     BitWriter *output_file = bit_write_open(outfile);
     if (output_file == NULL) {
-        printf("huff:  error reading output file %s", argv[2]);
+        printf("huff:  error reading output file %s\n", outfile);
         printf(HELPMESSAGE);
         exit(1);
     }

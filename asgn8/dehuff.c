@@ -77,25 +77,25 @@ void dehuff_decompress_file(FILE *fout, BitReader *inbuf) {
 }
 
 int main(int argc, char *argv[]) {
-    if (argc != 3) {
+    if (argc != 5) {
         printf("dehuff:  -i option is required");
         printf(HELPMESSAGE);
         return 0;
     }
 
-    const char *infile = argv[1];
-    const char *outfile = argv[2];
+    const char *infile = argv[2];
+    const char *outfile = argv[4];
 
     BitReader *input_file = bit_read_open(infile);
     if (input_file == NULL) {
-        printf("dehuff:  error reading input file %s", argv[1]);
+        printf("dehuff:  error reading input file %s", infile);
         printf(HELPMESSAGE);
         exit(1);
     }
 
     FILE *output_file = fopen(outfile, "wb");
     if (output_file == NULL) {
-        printf("dehuff:  error reading output file %s", argv[2]);
+        printf("dehuff:  error reading output file %s", outfile);
         printf(HELPMESSAGE);
         exit(1);
     }
