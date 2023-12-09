@@ -35,7 +35,6 @@ uint32_t fill_histogram(FILE *fin, uint32_t *histogram) {
 
 Node *create_tree(uint32_t *histogram, uint16_t *num_leaves) {
     PriorityQueue *new_priority = pq_create();
-    *num_leaves = 0;
 
     for (int i = 0; i < 256; ++i) {
         if (histogram[i] > 0) {
@@ -147,5 +146,8 @@ int main(int argc, char *argv[]) {
     }
 
     huff_compress_file(output_file, input_file, filesize, num_leaves, huff_tree, code_table);
+
+    fclose(input_file);
+    bit_write_close(&output_file);
     return 0;
 }
