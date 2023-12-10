@@ -74,6 +74,8 @@ void dehuff_decompress_file(FILE *fout, BitReader *inbuf) {
         }
         fputc(node->symbol, fout);
     }
+
+    node_free(&code_tree);
 }
 
 int main(int argc, char *argv[]) {
@@ -101,5 +103,9 @@ int main(int argc, char *argv[]) {
     }
 
     dehuff_decompress_file(output_file, input_file);
+
+    fclose(output_file);
+    bit_read_close(&input_file);
+
     return 0;
 }

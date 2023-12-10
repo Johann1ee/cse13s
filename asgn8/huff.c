@@ -59,6 +59,7 @@ Node *create_tree(uint32_t *histogram, uint16_t *num_leaves) {
     }
 
     Node *huffman = dequeue(new_priority);
+    pq_free(&new_priority);
     return huffman;
 }
 
@@ -105,6 +106,7 @@ void huff_compress_file(BitWriter *outbuf, FILE *fin, uint32_t filesize, uint16_
             code >>= 1;
         }
     }
+    node_free(&code_tree);
 }
 
 int main(int argc, char *argv[]) {
@@ -149,5 +151,6 @@ int main(int argc, char *argv[]) {
 
     fclose(input_file);
     bit_write_close(&output_file);
+
     return 0;
 }
