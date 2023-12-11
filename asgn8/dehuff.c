@@ -63,10 +63,12 @@ void dehuff_decompress_file(FILE *fout, BitReader *inbuf) {
         node = code_tree;
         while (true) {
             uint8_t bit = bit_read_bit(inbuf);
-            if (bit == 0) {
+            if (bit == 0 && node != NULL) {
                 node = node->left;
             } else {
-                node = node->right;
+                if (node != NULL) {
+                    node = node->right;
+                }
             }
             if (node != NULL && node->left == NULL && node->right == NULL) {
                 break;
